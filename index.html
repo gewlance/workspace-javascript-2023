@@ -23,16 +23,17 @@
             <p>
                 Please display a hello world message in JavaScript. 
                 <script>
-                    document.title = "JavaScript Basic -- In class practice -- Yilian Zhang";
+                    document.title = "JavaScript Basic -- In class practice -- Lance Carson";
                     // use document.write to display a message
-                    
+                    document.write("<p>Hello world</p>");
+                    document.write("<p>Hello world2</p>");
                     // use console.log to display a message   
-                  
+                    console.log("For debugging purpose");
                     
                 </script>
             </p>
             <p> Please import external file hello.js here. 
-                
+                <script src="js/hello.js"></script>
             </p>
         </div>
 
@@ -40,6 +41,19 @@
             <h1> Variable and Arithemetic Operation</h1>
             <p> Practice on variables </p>
 
+            <script>
+                var a=3;
+                var b=4;
+                var c= b + a;
+                document.write("<p>" + a + "+" + b + "=" + c + "</p>");
+
+                let message="great!";
+                if(true) {
+                    let message="fantastic";
+                    console.log("IN the if statement: " + message);}
+                console.log(message);
+
+            </script>
 
         </div>
 
@@ -47,7 +61,17 @@
             <h1> JavaScript Escape Sequence</h1>
             <p> Write an image to the page </p>
 
+            <script>
+                document.write("<img src=\"img/doorclose.jpg\">");
+            </script>*/
+
             <p> Write a table to the page </p>
+            <script>
+                document.write("<table>");
+                document.write("<tr> <td = colspan=\"2\">information</td></tr></table>")
+            </script>
+            
+
 
         </div>
 
@@ -55,6 +79,8 @@
             <h1>Window and Document Object </h1>
             <p> Try alert, open, location, url </p>
             <script>
+                //window.alert(document.lastModified);
+                //console.log(window.location);
 
             </script>
 
@@ -76,7 +102,12 @@
             <p id="p3"> Paragraph Number three </p>
             <p>Please write JavaScript code to change the content of each paragraph.​
             <p>
-
+                <script>
+                    document.getElementById("p1").innerHTML= "Changed";
+                    document.getElementById("p2").innerHTML= "p2 Changed";
+                    document.getElementById("p3").innerHTML= "<img src= \"img/doorclose.jpg\">";
+                </script>
+            </p>
 
         </div>
 
@@ -85,11 +116,17 @@
             <p> Please enter your numbers </p>
             <script>
                 function calculate() {
+                    var num1 = parseInt(document.getElementById("fnum").value);
 
+                    var num2 = parseInt(document.getElementsByName("num2")[0].value);
+
+                    var total = num1 + num2
+
+                    document.getElementById("result").textContent = "--"+total
 
                 }
             </script>
-            <p> <input type="text" name="num1" /> + <input type="text" name="num2">
+            <p> <input type="text" name="num1" id="fnum" /> + <input type="text" name="num2">
                 <input type="button" value="=" onclick="calculate();">
                 <label id="result"> ? </label>
             </p>
@@ -106,7 +143,18 @@
                 </p>
 
                 <p id="message">
-
+                    <script>
+                        function welcome(){
+                            var name = document.getElementById("cName").value;
+                            document.getElementById("message").textContent = "Welcome " + name;
+                        }
+                        
+                        //event and object
+                        var e1 = document.getElementById("cName");
+                        console.log(e1);
+                        //associate the event with event handler
+                        e1.addEventListener("blur",welcome,false);
+                    </script>
                 </p>
 
                 <p>
@@ -122,7 +170,21 @@
             <h1> Practice - Calculate Square</h1>
             Calculating Square:
             <input type="text" id="num" placeholder="Type in a number"> <sup> 2 </sup> =
-            <label id="result"> ? </label>
+            <label id="result2"> ? </label>
+
+            <script>
+                function squareThisNum(){
+                    var num1 = document.getElementById("num").value
+                    var answer = num1 * num1;
+                    console.log(answer)
+                    document.getElementById("result2").textContent = answer;
+                }
+                
+                //event and object
+                var numSquare = document.getElementById("num");
+
+                numSquare.addEventListener("blur",squareThisNum,false);
+            </script>
 
         </div>
 
@@ -138,6 +200,17 @@
 
             <div id="message"> 
             </div>
+            <script>
+                function changeHTML(){
+                    var code= document.getElementById
+                }
+
+
+                var btn = getElementById("tryit");
+                btn.addEventListener("click",changeHTML, false);
+
+            </script>
+
 
 
         </div>
@@ -161,8 +234,38 @@
             </p>
 
             <script type="text/javascript">
+                //event  -- when values change, price will be updated
+                function getCarPrice(){
+                    console.log("Change action works");
+                    //get input
+                    var year = document.getElementById("year").value;
+                    var carcondition = document.getElementById("condition").value;
 
+                    console.log(year,carcondition);
 
+                    if (year =="2003" && carcondition == "Fair"){
+                        price = 2000;
+                    }
+
+                    else if(year =="2003" && carcondition == "Good"){
+                        price = 3000;
+                    }
+
+                    else if(year =="2004" && carcondition == "Fair"){
+                        price = 4000;
+                    }
+
+                    else{
+                        price = 5000;
+                    }
+
+                    console.log(price);
+
+                }
+
+                //register event with event handler
+                document.querySelector("#year").addEventListener('change', getCarPrice,false);
+                document.querySelector("#condition").addEventListener('change', getCarPrice, false);
 
             </script>
 
@@ -173,6 +276,40 @@
             <p> Choose your favorite theme(warm, cool, hot)
                 <input type="text" id="theme">
             </p>
+            
+            <script>
+                //event  -- blur  eventhandler  change color
+                function changeTheme(){
+                    console.log("Change Theme called");
+
+                    var theme = document.getElementById("theme").value;
+                    console.log(theme);
+                    switch (theme) {
+                        case "warm":
+                            color = "green";
+                            break;
+                    
+                        case "hot":
+                            color = "red";
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    document.body.style.backgroundColor = color;
+
+
+
+                    }
+
+                // register event 
+                document.getElementById("theme").addEventListener("blur",changeTheme,false);
+
+
+            </script>
+
+
 
         </div>
 
@@ -181,9 +318,9 @@
         <div class="practice">
             <h1> Switch practice -- Insurance Application</h1>
             <p> Choose your coverage
-                <input type="radio" name="coverage" value="100000">100000
-                <input type="radio" name="coverage" value="200000">200000
-                <input type="radio" name="coverage" value="300000">300000
+                <input type="radio" name="coverage" id="c1" value="100000" checked>100000
+                <input type="radio" name="coverage" id="c2" value="200000">200000
+                <input type="radio" name="coverage" id="c3" value="300000">300000
 
             </p>
             <p> Choose your age group.
@@ -202,6 +339,49 @@
             <p id="result">
 
             </p>
+
+            <script>
+                //event set up
+                function getPremium(){
+                    //get coverage
+                    var coverage = parseFloat(document.querySelector('input[name="coverage"]:checked').value);
+                    console.log("coverage is... " + coverage);
+                    //get age group
+                    var ageIndex = document.getElementById("agegroup").selectedIndex;
+                    console.log("ageIndex is... " + ageIndex);
+                    //make decision
+                    var premium =0;
+                    var base =0;
+                    var agefactor =0; 
+                    switch (ageIndex) {
+                        case "under 30":
+                            agefactor = .08;
+                            break;
+                        case "30-34":
+                            agefactor =.09;
+                            break;
+                        case "35-39":
+                            agefactor =.09;
+                            break;
+                        case "40-44":
+                            agefactor =.09;
+                            break;
+                        default:
+                            break;
+                    }
+                    premium = base + agefactor * coverage/1000;
+                    
+                    console.log("the premium is ...." + premium);
+                }
+
+                var radioE = document.getElementById("c1").checked;
+                //register event
+
+                document.getElementByname("agegroup");
+
+
+            </script>
+
 
         </div>
 
@@ -224,14 +404,47 @@
             <!--  Input number box -->
             <p> N = <input type="number" min="1" max="10" id="inputnumber2"> </p>
             <p>
-                <input type="button" value="Click for multiplication table">
+                <input type="button" id="doTable" value="Click for multiplication table">
             </p>
 
             <!-- output section -->
-            <div id="output">
+            <div id="looptable">
 
 
             </div>
+            <script>
+                function maketable(){
+                    console.log("button click --- in maketable")
+                    var num = parseInt(document.getElementById("inputnumber2").value);
+                    var output = "";
+                    output += "<table>";
+                    
+                    for(var i = 1; i<=num; i++){
+                        output += "<tr>";
+                        //inner loop for columns
+                        for (var j =1; j<=num; j++){
+                            product = i*j;
+                            output +="<td>" + i + "*" + j + "=" + product + "</td>";
+                        }
+
+
+                        output += "</tr>";
+                    }
+
+                    output += "</table>";
+                    
+                    document.getElementById("looptable").innerHTML = output;
+                }
+
+                //bind event
+                document.getElementById("doTable").addEventListener("click",maketable,false);
+
+
+
+            </script>
+
+
+
 
         </div>
 
