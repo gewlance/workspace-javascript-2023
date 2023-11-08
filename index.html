@@ -206,7 +206,7 @@
                 }
 
 
-                var btn = getElementById("tryit");
+                var btn = document.getElementById("tryit");
                 btn.addEventListener("click",changeHTML, false);
 
             </script>
@@ -377,7 +377,7 @@
                 var radioE = document.getElementById("c1").checked;
                 //register event
 
-                document.getElementByname("agegroup");
+                document.getElementsByName("agegroup");
 
 
             </script>
@@ -470,7 +470,7 @@
         <div class="practice">
             <h1>Change Attribute -- Rolling a dice </h1>
             <p> <input type="button" id="roll" value="roll" /> </p>
-            <p> <img src="img/die1.png"> </p>
+            <p> <img src="img/die1.png" id="dieimage"> </p>
             <table>
                 <tr>
                     <th>Result</th>
@@ -491,6 +491,51 @@
                     <td id="r6"></td>
                 </tr>
             </table>
+
+            <script>
+                var stats = [0,0,0,0,0,0];
+
+                //event and event handler
+                function rollDice(){
+                    //get random number
+                    var n = Math.floor(Math.random()*(6)+1);
+
+                    stats[n-1]+=1;
+
+
+                    // change the image src attribute
+                    var e = document.getElementById("dieimage")
+                    e.setAttribute("src","img/die" + n + ".png");
+
+                    //update the table
+                    document.getElementById("r"+n).textContent = stats[n-1].toString();
+
+
+                }
+
+                //register event
+                document.getElementById("roll").addEventListener("click",rollDice,false);
+
+
+
+
+
+
+                /*practice on array
+                var testArray = [1,2,3,4,5,6];
+                testArray.push(7);
+                testArray.push(15);
+                testArray.pop(15);
+                testArray[100] = 0;
+                testArray[78] = 10;
+                console.log(testArray);
+
+                for(var i in testArray){
+                    console.log(i, testArray[i]);
+                }
+                */
+
+            </script>
 
         </div>
 
@@ -513,8 +558,23 @@
                 <img src="img/usca5.jpg" alt="usca">
             </div>
 			<script>
-				
-			</script>
+				var imageList = document.querySelectorAll(".img-container-hide");
+                var index =0;
+                /*imageList[0].setAttribute("class","img-container");
+                imageList[0].setAttribute("class", "img-container-hide");
+                imageList[1].setAttribute("class","img-container");*/
+
+                function updateBanner(){
+                    imageList[index].setAttribute("class", "img-container-hide");
+                    index++;
+                    index = index % 5;
+                    imageList[index].setAttribute("class","img-container");
+                }
+
+                //auto update the banner
+                setInterval(updateBanner,5000);
+
+            </script>
 
 
         </div>
